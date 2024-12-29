@@ -72,17 +72,17 @@ import os
 from pathlib import Path
 
 allowed = set("hBinput123456789-")
-dash = "hB"  # $-
-last = "input"  # $_
+option_flags = "hB"  # $-
+last_arg = "input"  # $_
 
 
 def char_to_expr(c: str) -> str:
     if c.isdigit():
         return c
-    if c in dash:
-        return f"${{-:{dash.index(c) if dash.index(c) != 0 else ''}:1}}"
-    if c in last:
-        return f"${{_:{last.index(c) if last.index(c) != 0 else ''}:1}}"
+    if c in option_flags:
+        return f"${{-:{option_flags.index(c) or ''}:1}}"
+    if c in last_arg:
+        return f"${{_:{last_arg.index(c) or ''}:1}}"
     return ""
 
 
